@@ -25,6 +25,17 @@ app.get('/api/getTasks',(req,res)=>{
         }
     })
 })
+app.post('/api/addTask', (req,res)=>{
+    console.log(req.body)
+    connection.query("INSERT INTO tasks(description, user) VALUES(?,?)", [req.body.description, req.body.user], 
+    (e,rows,field)=>{
+        if (e){
+            console.log(e)
+        }else{
+            res.send('Success')
+        }
+    })
+})
 app.get('/mainpage', (req,res)=>{
     res.render('mainpage', {title: 'Tasks'})
 })

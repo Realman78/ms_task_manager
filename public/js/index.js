@@ -1,4 +1,26 @@
 const tasksDiv = document.getElementById('tasksDiv')
+const textAreaDescription = document.getElementById('textAreaDescription')
+const addTaskButton = document.getElementById('addTaskButton')
+
+addTaskButton.addEventListener('click', e =>{
+    e.preventDefault()
+    const taskDescription = textAreaDescription.value
+    const user = 'Marin'
+    const bodyData = JSON.stringify({
+        description: taskDescription,
+        user
+    })
+    fetch('/api/addTask', {
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: bodyData
+    }).then(async (res)=>{
+        const result = await res.text()
+        console.log(result)
+    })
+})
 
 async function getTasks(){
     const data =  await fetch('/api/getTasks').then(async (res)=>{
