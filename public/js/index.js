@@ -4,22 +4,16 @@ const addTaskButton = document.getElementById('addTaskButton')
 
 addTaskButton.addEventListener('click', e =>{
     e.preventDefault()
+    //Task desc koji dobivam od textArea-e i user cemo poslije zamijenit sa pravim userima 
     const taskDescription = textAreaDescription.value
     const user = 'Marin'
+    //bodyData su parametri koji ulaze kao novi task, moras napravit objekt od njih i stringify-at
+    //tako da ih u requestu dolje (*!*) može primit pa onda po tome dodajen u db
     const bodyData = JSON.stringify({
         description: taskDescription,
         user
     })
-    fetch('/api/addTask', {
-        method: "POST",
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body: bodyData
-    }).then(async (res)=>{
-        const result = await res.text()
-        console.log(result)
-    })
+    addTask(bodyData)
 })
 
 async function getTasks(){
@@ -28,6 +22,21 @@ async function getTasks(){
         return rows
     })
     showTasks(data)
+}
+
+async function addTask(taskData){
+    fetch('/api/addTask', {
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        // *!*
+        body: taskData
+    }).then(async (res)=>{
+        const result = await res.text()
+        document.location.reload()
+        console.log(result)
+    })
 }
 
 function showTasks(data){
