@@ -11,6 +11,10 @@ loginForm.addEventListener('submit', (e)=>{
         uoe: username_or_email, 
         password
     })
+    userLogin(bodyData)
+})
+//Request za login usera
+function userLogin(bodyData){
     fetch('/users/login', {
         method: "POST",
         headers: {
@@ -24,4 +28,4 @@ loginForm.addEventListener('submit', (e)=>{
             alert('wrong username or pass')
         }
     })
-})
+}
