@@ -71,8 +71,22 @@ addTaskButton.addEventListener('click', e =>{
     addTask(bodyData)
 })
 
+async function updateTask(id, bodyData){
+    fetch('/tasks/update/'+id, {
+        method: 'PATCH',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: bodyData
+    }).then(async (res)=>{
+        const result = await res.text()
+        document.location.reload()
+        console.log(result)
+    })
+}
+
 async function addTask(taskData){
-    fetch('/api/addTask', {
+    fetch('/tasks/add', {
         method: "POST",
         headers:{
             'Content-Type': 'application/json'
