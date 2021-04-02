@@ -4,9 +4,18 @@ const emailInput = document.getElementById('emailInput')
 const passwordInput = document.getElementById('passInput')
 const submitRegistrationButton = document.getElementById('submitRegistrationButton')
 
-//document.cookie = "username=John Doe; expires=Wed, 13 Aug 2070 12:00:00 UTC";
-
-
+async function checkIfLoggedIn(){
+    try{
+        const res = await fetch('/users/getUsers/token')
+        const data = await res.json()
+        if (data.length > 0){
+            window.location.href = '/mainpage'
+        }
+    }catch(e){
+        console.log('register')
+    }
+}
+checkIfLoggedIn()
 registrationForm.addEventListener('submit', (e)=>{
     e.preventDefault()
     const username = usernameInput.value
