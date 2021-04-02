@@ -1,6 +1,18 @@
 const tasksDiv = document.getElementById('tasksDiv')
 const textAreaDescription = document.getElementById('textAreaDescription')
 const addTaskButton = document.getElementById('addTaskButton')
+const logoutButton = document.getElementById('logoutButton')
+
+async function checkIfLoggedIn(){
+    try{
+        const res = await fetch('/users/getUsers/token')
+        const data = await res.json()
+        console.log(data)
+    }catch(e){
+        window.location.href = '/login'
+    }
+}
+checkIfLoggedIn()
 
 addTaskButton.addEventListener('click', e =>{
     e.preventDefault()
@@ -14,6 +26,11 @@ addTaskButton.addEventListener('click', e =>{
         user
     })
     addTask(bodyData)
+})
+
+logoutButton.addEventListener('click', (e)=>{
+    e.preventDefault()
+    console.log(e.target)
 })
 
 async function updateTask(id, bodyData){
