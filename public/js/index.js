@@ -19,7 +19,7 @@ function showTasks(data) {
 
     const titlePlaceholder = document.createElement("div");
     titlePlaceholder.textContent =
-      task.user + ": " + task.description + " " + " " + task.id;
+      task.user + ": " + task.description;
     titlePlaceholder.id = "card" + task.id;
     titlePlaceholder.classList.add("pink");
     titlePlaceholder.classList.add("draggable");
@@ -50,7 +50,9 @@ function onDrop(event) {
 
   const dropzone = event.target;
 
-  dropzone.appendChild(draggableElement);
+  if(dropzone.id == 'tasksDiv' || dropzone.id == 'tasksDivInProgress' || dropzone.id == 'tasksDivInReview' || dropzone.id == 'tasksDivDone') {
+    dropzone.appendChild(draggableElement);
+  }  
 
   event.dataTransfer.clearData();
 }
@@ -83,5 +85,13 @@ async function addTask(taskData){
         console.log(result)
     })
 }
+
+addTextareaButton.addEventListener('click', (e)=>{
+    if(textAreaDescription.style.display == "none") {
+        textAreaDescription.style.display = "block";
+    } else {
+        textAreaDescription.style.display = "none";
+    }
+    })
 
 getTasks();

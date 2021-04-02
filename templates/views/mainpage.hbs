@@ -23,27 +23,28 @@
                 </div>
                 <div class="card dropzone" ondragover="onDragOver(event)" ondrop="onDrop(event);">
                     <h1>In progress</h1>
-                    <div class="tasksSection" id="tasksDiv">
+                    <div class="tasksSection" id="tasksDivInProgress">
 
                     </div>
                 </div>
                 <div class="card dropzone" ondragover="onDragOver(event)" ondrop="onDrop(event);">
                     <h1>In review</h1>
-                    <div class="tasksSection" id="tasksDiv">
+                    <div class="tasksSection" id="tasksDivInReview">
 
                     </div>
                 </div>
                 <div class="card dropzone" ondragover="onDragOver(event)" ondrop="onDrop(event);">
                     <h1>Done</h1>
-                    <div class="tasksSection" id="tasksDiv" ondragover="onDragOver(event)">
+                    <div class="tasksSection" id="tasksDivDone" ondragover="onDragOver(event)">
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <textarea id="textAreaDescription" cols="30" rows="10"></textarea>
-    <button id="addTaskButton">Add task</button>
+    <textarea id="textAreaDescription" cols="30" rows="10" class="textarea"></textarea>
+    <button id="addTextareaButton" class="add-textarea"><i class="fas fa-edit"></i></button>
+    <button id="addTaskButton" class="add"><i class="fas fa-plus-square"></i></button>
     <script src="./js/index.js"></script>
 </body>
 
