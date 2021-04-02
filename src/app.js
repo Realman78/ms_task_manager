@@ -5,6 +5,7 @@ const connection = require('./db/mysql')
 const app = express()
 const usersRouter = require('./routers/users')
 const tasksRouter = require('./routers/tasks')
+const fetch = require('node-fetch')
 //Ovo je samo da kad hostamo na heroku, da ne koristi port 3000 nego herokuov predvideni
 const port = process.env.PORT||3000
 
@@ -30,7 +31,6 @@ app.get('/', (req,res)=>{
 
 //Renderanje main page-a
 app.get('/mainpage', (req,res)=>{
-    console.log(getCookie(req.headers.cookie, 'ms_tm_token'))
     res.render('mainpage', {title: 'Tasks'})
 })
 
@@ -49,22 +49,4 @@ app.listen(port, ()=>{
     console.log(`Server is up and running on port ${port}`)
 })
 
-function getCookie(cookies, cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(cookies);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
 
-function checkIfLoggedIn(){
-    
-}
