@@ -3,6 +3,19 @@ const passInput = document.getElementById('passInput')
 const loginButton = document.getElementById('loginButton')
 const loginForm = document.getElementById('loginForm')
 
+async function checkIfLoggedIn(){
+    try{
+        const res = await fetch('/users/getUsers/token')
+        const data = await res.json()
+        if (data.length > 0){
+            window.location.href = '/mainpage'
+        }
+    }catch(e){
+        console.log('login')
+    }
+}
+checkIfLoggedIn()
+
 loginForm.addEventListener('submit', (e)=>{
     e.preventDefault()
     const username_or_email = user_or_email_input.value
