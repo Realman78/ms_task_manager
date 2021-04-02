@@ -3,7 +3,7 @@ const textAreaDescription = document.getElementById('textAreaDescription')
 const addTaskButton = document.getElementById('addTaskButton')
 
 async function getTasks() {
-  const data = await fetch("/api/getTasks").then(async (res) => {
+  const data = await fetch("/tasks/getall").then(async (res) => {
     const rows = await res.json();
     return rows;
   });
