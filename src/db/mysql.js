@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'ms_tm_db'
+    database: 'tasks'
 })
 
 connection.connect((e)=>{
