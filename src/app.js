@@ -20,38 +20,17 @@ app.set('views', viewsPath)
 app.use(express.static(publicDirPath))
 app.use(express.json())
 app.use(usersRouter)
-//app.use(tasksRouter)
+app.use(tasksRouter)
 
 //Kad radim request na / odnosno index, prikazi mi index (onda on zbog app.set('views', viewsPath) 
 //trazi hbs file koji se zove index i to prikazuje)
 app.get('/', (req,res)=>{
-    res.render('index', {test: 'test'})
+    res.redirect('/register')
 })
 
-//Read iz databaže sve taskove koji nisu completeani te njihovo slanje (res.send) da se mogu koristit u frontendu
-app.get('/api/getTasks',(req,res)=>{
-    connection.query('SELECT * FROM tasks where completed=0', (e,rows,field)=>{
-        if (e){
-            console.log(e)
-        }else{
-            res.send(rows)
-        }
-    })
-})
-//DOdavanje novog taska, možes poslat sta god oces ja sam bzvz stavio Success
-app.post('/api/addTask', (req,res)=>{
-    console.log(req.body)
-    connection.query("INSERT INTO tasks(description, user) VALUES(?,?)", [req.body.description, req.body.user], 
-    (e,rows,field)=>{
-        if (e){
-            console.log(e)
-        }else{
-            res.send('Success')
-        }
-    })
-})
 //Renderanje main page-a
 app.get('/mainpage', (req,res)=>{
+    console.log(getCookie(req.headers.cookie, 'ms_tm_token'))
     res.render('mainpage', {title: 'Tasks'})
 })
 
@@ -67,5 +46,25 @@ app.get('/register', (req,res)=>{
 
 //Express server sluša port 3000 zasad jer nismo hostani
 app.listen(port, ()=>{
-    console.log(`Server is running on port ${port}`)
+    console.log(`Server is up and running on port ${port}`)
 })
+
+function getCookie(cookies, cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(cookies);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkIfLoggedIn(){
+    
+}

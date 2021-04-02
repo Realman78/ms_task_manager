@@ -26,15 +26,27 @@ router.post('/users/register', (req,res)=>{
 router.post('/users/login', (req,res)=>{
     let keyword = req.body.uoe
     keyword = validateEmail(keyword) ? 'email' : 'username'
-    connection.query(`SELECT username,password FROM users WHERE ${keyword}=?`, [req.body.uoe], (e, rows, field)=>{
+    connection.query(`SELECT id,username,password FROM users WHERE ${keyword}=?`, [req.body.uoe], (e, rows, field)=>{
         if (e){
             console.log(e)
         }else{
             if(rows[0].password == req.body.password)
-                res.status(201).send()
+                res.status(201).send(rows[0])
             else{
                 res.status(401).send()
             }
+        }
+    })
+})
+
+router.patch('/users/updateToken/:id', (req,res)=>{
+    const token = req.body.token
+    const sql = `UPDATE users SET ms_tm_token=? WHERE id=${req.params.id}`
+    connection.query(sql, [token], (e,rows,field)=>{
+        if (e){
+            console.log(e)
+        }else{
+            res.send('Success')
         }
     })
 })
