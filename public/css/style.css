@@ -1,5 +1,6 @@
 body {
   color: pink;
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
@@ -204,3 +205,79 @@ button:hover {
   background: rgb(95, 172, 189); 
 }
 
+.login {
+  margin: 0;
+  padding: 0;
+  background-image: url(210107\ space\ invaders\ background.png);
+  -webkit-background-size: cover;
+  background-size: cover;  
+}
+
+.container-login {
+  width: 400px;
+  height: 420px;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  padding: 50px 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 50px #000;
+  text-align: center;
+}
+
+.login-h1 {
+  text-align: left;
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.container-login .input {
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid #fff; /*426696*/
+  background: transparent;
+  outline: none;
+  height: 30px;
+  font-size: 20px;
+  opacity: 1;
+  color: #426696;
+}
+
+.input-login {
+  width: 50%;
+  margin-bottom: 20px;
+  border: none;
+  background: transparent;
+  outline: none;
+  height: 50px;
+  font-size: 20px;
+  opacity: 1;
+  color: #ccc;
+  background-color: #4AAE9B;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.input-login:hover {
+  background-color: #d0eb6c;
+  color: #000;
+  transition: 0.5s ease;
+}
+
+::placeholder {
+  color: #dceba8;
+}
+
+.input:focus::placeholder {
+  color: transparent;
+  transition: 0.5s ease;
+}
+
+.register {
+  color: #ccc;
+}
