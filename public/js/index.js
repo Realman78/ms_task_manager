@@ -125,4 +125,25 @@ addTextareaButton.addEventListener('click', (e)=>{
     }
     })
 
+function myFunction(x) {
+  x.classList.toggle("change");
+}
+
+menu.addEventListener('click', (e) => {
+  const nav = document.querySelector(".nav");
+  const overlay = document.querySelector(".nav-overlay");
+
+  if(nav.classList == "nav nav-open") {
+    nav.classList.remove("nav-open");
+    nav.classList.add("nav-close")
+    overlay.classList.remove("nav-open");
+    overlay.classList.add("nav-open");
+  } else {
+    nav.classList.remove("nav-close");
+    nav.classList.add("nav-open");
+    overlay.classList.remove("nav-open");
+    overlay.classList.add("nav-open");    
+  }
+})
+
 getTasks();
