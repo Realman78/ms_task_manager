@@ -69,7 +69,6 @@ h1 {
   color: #426696;
   font-weight: 600;
   font-size: 2rem;
-  opacity: 0.8;
   text-align: center;
 }
 h2,
@@ -259,8 +258,7 @@ button:hover {
   outline: none;
   height: 50px;
   font-size: 20px;
-  opacity: 1;
-  color: #ccc;
+  color: #fff;
   background-color: #4AAE9B;
   border-radius: 20px;
   margin-top: 20px;
