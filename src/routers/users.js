@@ -1,5 +1,6 @@
 const express = require('express')
 const router = new express.Router
+const User = require('../../schemas/User')
 
 router.get('/users/getUsers', (req,res)=>{
     // connection.query("SELECT * FROM users", (e,rows,field)=>{
@@ -21,7 +22,17 @@ router.get('/users/getUsers/token', (req,res)=>{
     // })
 })
 
-router.post('/users/register', (req,res)=>{
+router.post('/users/register', async (req,res)=>{
+    if (!req.body.username || !req.body.email || !req.body.password){
+        return res.sendStatus(404)
+    }
+    const userBody = {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+    }
+    const user = await User.create(userBody).catch(e => console.log(e))
+    res.status(201).send(user)
     // connection.query("INSERT INTO users(username, email, password) VALUES(?,?,?);",
     // [req.body.username, req.body.email, req.body.password], (e,rows,fields)=>{
     //     if (e){
