@@ -1,11 +1,11 @@
 //importi
 const express = require('express')
 const path = require('path')
-const connection = require('./db/mysql')
 const app = express()
 const usersRouter = require('./routers/users')
 const tasksRouter = require('./routers/tasks')
 const fetch = require('node-fetch')
+require('./db')
 //Ovo je samo da kad hostamo na heroku, da ne koristi port 3000 nego herokuov predvideni
 const port = process.env.PORT||3000
 
